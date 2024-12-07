@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <TextView
+        android:id="@+id/finishTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="결제 완료"
+        android:background="@drawable/background_purple"
+        android:textSize="24sp"
+        android:textColor="#000000"
+        android:padding="20dp"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+
+        <!-- 결제 완료 및 출발지 안내 문구 -->
+        <TextView
+            android:id="@+id/paymentFinishInstruction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:text="결제가 완료되었습니다!"
+            android:textColor="#000000"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/finishInstruction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="20dp"
+            android:text="번호표를 받아 출발 시간 전까지 아래 지정된 출발지로 가서 기다려주세요."
+            android:textColor="#000000"
+            android:textSize="20sp" />
+
+        <!-- 출발지 안내 -->
+        <WebView
+            android:id="@+id/routeWebView"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/background_gray" />
+
+
+        <!-- 출발 예정 시간 표시 -->
+        <TextView
+            android:id="@+id/departTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/background_gray"
+            android:text="출발 예정 시간: 오전 10시 20분"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+
+        <ProgressBar
+            android:id="@+id/progressBarTime"
+            style="?android:attr/progressBarStyle"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <!-- 번호표 중 안내 문구 -->
+        <TextView
+            android:id="@+id/numTicketRecognition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:paddingBottom="10dp"
+            android:text="번호표를 출력 중입니다.\n전부 출력될 때까지 당기지 말고 기다려주세요."
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

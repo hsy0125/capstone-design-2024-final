@@ -1,0 +1,114 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android' // Kotlin 지원 추가
+}
+
+android {
+    namespace 'mp.p2.homescreen'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "mp.p2.homescreen"
+        minSdk 24
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17 // 최신 Java 버전 사용
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = '17' // Kotlin 코드에서 Java 17 기능 사용
+    }
+}
+
+dependencies {
+    // Google Maps SDK - 중복된 버전 제거 (18.1.0만 사용)
+    implementation 'com.google.android.gms:play-services-maps:18.1.0'
+
+    // Google Play Services - Location
+    implementation 'com.google.android.gms:play-services-location:21.0.1'
+
+    // (선택) Google Places API - 장소 검색 지원
+    implementation 'com.google.android.libraries.places:places:3.1.0'
+
+    // Android 기본 라이브러리
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.9.0' // Material Design
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+
+    // 테스트 라이브러리
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+}
+
+//plugins {
+//    id 'com.android.application'
+//    id 'org.jetbrains.kotlin.android' // Kotlin 지원 추가
+//}
+//
+//android {
+//    namespace 'mp.p2.homescreen'
+//    compileSdk 33
+//
+//    defaultConfig {
+//        applicationId "mp.p2.homescreen"
+//        minSdk 24
+//        targetSdk 33
+//        versionCode 1
+//        versionName "1.0"
+//
+//        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+//    }
+//
+//    buildTypes {
+//        release {
+//            minifyEnabled false
+//            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+//        }
+//    }
+//    compileOptions {
+//        sourceCompatibility JavaVersion.VERSION_17 // 최신 Java 버전 사용
+//        targetCompatibility JavaVersion.VERSION_17
+//    }
+//    kotlinOptions {
+//        jvmTarget = '17' // Kotlin 코드에서 Java 17 기능 사용
+//    }
+//}
+//
+//dependencies {
+//    // Google Maps SDK
+//    implementation 'com.google.android.gms:play-services-maps:18.1.0'  // Google Maps 라이브러리 추가
+//    implementation 'com.google.android.gms:play-services-maps:17.0.1'
+//
+//
+////    implementation 'com.google.android.gms:play-services-maps:18.0.2'
+//
+//    // Google Play Services - Location
+//    implementation 'com.google.android.gms:play-services-location:21.0.1'
+//
+//    // (선택) Google Places API - 장소 검색 지원
+//    implementation 'com.google.android.libraries.places:places:3.1.0'
+//
+//    // Android 기본 라이브러리
+//    implementation 'androidx.appcompat:appcompat:1.6.1'
+//    implementation 'com.google.android.material:material:1.9.0' // Material Design
+//    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+//
+//    // 테스트 라이브러리
+//    testImplementation 'junit:junit:4.13.2'
+//    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+//    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+//}
