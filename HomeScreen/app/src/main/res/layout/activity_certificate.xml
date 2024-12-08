@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="16dp"
+    android:id="@+id/certificate">
+
+    <!-- 장애인 택시 인증 타이틀 -->
+    <TextView
+        android:id="@+id/certificate_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_purple"
+        android:text="장애인 택시 인증"
+        android:textSize="24sp"
+        android:textColor="#000000"
+        android:padding="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <!-- 장애인 택시 인증 옵션 -->
+    <RelativeLayout
+        android:id="@+id/app_certificate_option"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/background_gray"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/_certificate_option"
+        app:layout_constraintTop_toBottomOf="@id/certificate_title">
+
+        <ImageView
+            android:id="@+id/call_taix_app_img"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:contentDescription="서울장애인콜택시 앱"
+            android:scaleType="centerInside"
+            android:src="@drawable/call_taxi" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@color/black"
+            android:text="서울장애인콜택시 앱 바코드 인식"
+            android:textColor="#FFFFFF"
+            android:textSize="23sp"
+            android:layout_alignBottom="@id/call_taix_app_img"/>
+    </RelativeLayout>
+
+    <!-- 추가 인증 수단 옵션 -->
+    <RelativeLayout
+        android:id="@+id/_certificate_option"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="8dp"
+        android:background="@drawable/background_gray"
+        app:layout_constraintTop_toBottomOf="@id/app_certificate_option"
+        app:layout_constraintBottom_toTopOf="@id/certificate_introduction"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.3">
+
+<!--        <ImageView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:src=""-->
+<!--            android:contentDescription="다른 간편 인증 수단 없을까요..가상으로 국가에서 전용 카드를 만든다고 가정하는건 어떨지"-->
+<!--            android:scaleType="centerInside"/>-->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="추가 수단 탐색 필요"
+            android:textSize="30sp"
+            android:background="@color/black"
+            android:textColor="#FFFFFF"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+
+    <!-- 추가 안내 텍스트 -->
+
+    <TextView
+        android:id="@+id/certificate_introduction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="장애인 택시는 장애 1~2급 해당자 또는 의사 소견서를 제출한 휠체어 사용자인 경우 무료 이용이 가능합니다.*"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@id/nav_certificate_option"
+        app:layout_constraintTop_toBottomOf="@id/_certificate_option"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center"/>
+
+    <!-- 네비게이션-->
+    <RelativeLayout
+        android:id="@+id/nav_certificate_option"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.1"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/back_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="뒤로"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/home_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="홈"
+            android:textSize="20dp"/>
+
+        <Button
+            android:id="@+id/cancel_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="전체취소"
+            android:textSize="20dp"/>
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

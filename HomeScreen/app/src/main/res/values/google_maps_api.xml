@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<resources></resources>-->
+
+
+<resources>
+    <!-- Google Maps API 키 -->
+    <string name="google_maps_key" translatable="false">AIzaSyDoMFHfwO9UW5kP0V1hdRaC8meI2ULj0yc</string>
+</resources>
