@@ -13,7 +13,8 @@
         android:text="Android Compact - 1"
         android:textSize="24sp"
         android:textColor="#CCCCCC"
-        android:layout_marginBottom="20dp" />
+        android:layout_marginBottom="20dp"
+        android:contentDescription="앱 제목" /> <!-- 음성 안내를 위한 contentDescription 추가 -->
 
     <!-- 어디로든 키오스크 확인과 콜밴 버튼 사이 간격 추가 -->
     <LinearLayout
@@ -35,7 +36,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:src="@drawable/kiosk_icon"
-                android:contentDescription="키오스크 이미지" />
+                android:contentDescription="키오스크 이미지" /> <!-- 이미지 설명 추가 -->
 
             <Button
                 android:id="@+id/kioskButton"
@@ -44,7 +45,8 @@
                 android:text="어디로든 키오스크 확인"
                 android:backgroundTint="#D3D3D3"
                 android:textColor="#000"
-                android:layout_marginTop="10dp" />
+                android:layout_marginTop="10dp"
+                android:contentDescription="어디로든 키오스크 확인 버튼" /> <!-- 버튼에 설명 추가 -->
         </LinearLayout>
 
         <!-- 콜밴 -->
@@ -60,7 +62,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:src="@drawable/callvan_icon"
-                android:contentDescription="콜밴 이미지" />
+                android:contentDescription="콜밴 이미지" /> <!-- 이미지 설명 추가 -->
 
             <Button
                 android:id="@+id/callvanButton"
@@ -69,7 +71,8 @@
                 android:text="콜밴 (7인 이하)"
                 android:backgroundTint="#D3D3D3"
                 android:textColor="#000"
-                android:layout_marginTop="10dp" />
+                android:layout_marginTop="10dp"
+                android:contentDescription="콜밴 버튼" /> <!-- 버튼에 설명 추가 -->
         </LinearLayout>
     </LinearLayout>
 
@@ -94,7 +97,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:src="@drawable/disabled_taxi_icon"
-                android:contentDescription="장애인 택시 이미지" />
+                android:contentDescription="장애인 택시 이미지" /> <!-- 이미지 설명 추가 -->
 
             <Button
                 android:id="@+id/disabledTaxiButton"
@@ -103,7 +106,8 @@
                 android:text="장애인 택시"
                 android:backgroundTint="#D3D3D3"
                 android:textColor="#000"
-                android:layout_marginTop="10dp" />
+                android:layout_marginTop="10dp"
+                android:contentDescription="장애인 택시 버튼" /> <!-- 버튼에 설명 추가 -->
         </LinearLayout>
 
         <!-- 일반 택시 -->
@@ -119,7 +123,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:src="@drawable/disabled_taxi_icon"
-                android:contentDescription="일반 택시 이미지" />
+                android:contentDescription="일반 택시 이미지" /> <!-- 이미지 설명 추가 -->
 
             <Button
                 android:id="@+id/TaxiButton"
@@ -128,7 +132,8 @@
                 android:text="일반 택시"
                 android:backgroundTint="#D3D3D3"
                 android:textColor="#000"
-                android:layout_marginTop="10dp" />
+                android:layout_marginTop="10dp"
+                android:contentDescription="일반 택시 버튼" /> <!-- 버튼에 설명 추가 -->
         </LinearLayout>
     </LinearLayout>
 
@@ -146,7 +151,8 @@
             android:layout_height="wrap_content"
             android:text="뒤로가기"
             android:layout_margin="5dp"
-            android:backgroundTint="#674fa7" />
+            android:backgroundTint="#674fa7"
+            android:contentDescription="뒤로가기 버튼" /> <!-- 버튼에 설명 추가 -->
 
         <Button
             android:id="@+id/homeButton"
@@ -154,7 +160,8 @@
             android:layout_height="wrap_content"
             android:text="홈"
             android:layout_margin="5dp"
-            android:backgroundTint="#674fa7" />
+            android:backgroundTint="#674fa7"
+            android:contentDescription="홈 버튼" /> <!-- 버튼에 설명 추가 -->
 
         <Button
             android:id="@+id/cancelButton"
@@ -162,7 +169,8 @@
             android:layout_height="wrap_content"
             android:text="전체취소"
             android:layout_margin="5dp"
-            android:backgroundTint="#674fa7" />
+            android:backgroundTint="#674fa7"
+            android:contentDescription="전체취소 버튼" /> <!-- 버튼에 설명 추가 -->
     </LinearLayout>
 
     <!-- 하단 배너 추가 -->
@@ -188,7 +196,8 @@
             android:layout_marginBottom="10dp"
             android:text="보행자 길찾기"
             android:textColor="#000000"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:contentDescription="배너 텍스트" /> <!-- 텍스트 설명 추가 -->
 
         <ImageView
             android:id="@+id/qrCodeImage"
@@ -196,6 +205,208 @@
             android:layout_height="120dp"
             android:layout_gravity="center"
             android:contentDescription="QR 코드 이미지"
-            android:src="@drawable/qr_code_image" />
+            android:src="@drawable/qr_code_image" /> <!-- 이미지 설명 추가 -->
     </LinearLayout>
 </LinearLayout>
+
+    <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    android:orientation="vertical"-->
+<!--    android:gravity="center"-->
+<!--    android:padding="16dp"-->
+<!--    android:background="#FFFFFF">-->
+
+<!--    &lt;!&ndash; 상단 텍스트 &ndash;&gt;-->
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Android Compact - 1"-->
+<!--        android:textSize="24sp"-->
+<!--        android:textColor="#CCCCCC"-->
+<!--        android:layout_marginBottom="20dp" />-->
+
+<!--    &lt;!&ndash; 어디로든 키오스크 확인과 콜밴 버튼 사이 간격 추가 &ndash;&gt;-->
+<!--    <LinearLayout-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:layout_marginBottom="20dp">-->
+
+<!--        &lt;!&ndash; 어디로든 키오스크 확인 &ndash;&gt;-->
+<!--        <LinearLayout-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical"-->
+<!--            android:gravity="center"-->
+<!--            android:layout_marginEnd="20dp">-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/kioskImage"-->
+<!--                android:layout_width="100dp"-->
+<!--                android:layout_height="100dp"-->
+<!--                android:src="@drawable/kiosk_icon"-->
+<!--                android:contentDescription="키오스크 이미지" />-->
+
+<!--            <Button-->
+<!--                android:id="@+id/kioskButton"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="어디로든 키오스크 확인"-->
+<!--                android:backgroundTint="#D3D3D3"-->
+<!--                android:textColor="#000"-->
+<!--                android:layout_marginTop="10dp" />-->
+<!--        </LinearLayout>-->
+
+<!--        &lt;!&ndash; 콜밴 &ndash;&gt;-->
+<!--        <LinearLayout-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical"-->
+<!--            android:gravity="center"-->
+<!--            android:layout_marginStart="20dp">-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/callvanImage"-->
+<!--                android:layout_width="100dp"-->
+<!--                android:layout_height="100dp"-->
+<!--                android:src="@drawable/callvan_icon"-->
+<!--                android:contentDescription="콜밴 이미지" />-->
+
+<!--            <Button-->
+<!--                android:id="@+id/callvanButton"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="콜밴 (7인 이하)"-->
+<!--                android:backgroundTint="#D3D3D3"-->
+<!--                android:textColor="#000"-->
+<!--                android:layout_marginTop="10dp" />-->
+<!--        </LinearLayout>-->
+<!--    </LinearLayout>-->
+
+<!--    &lt;!&ndash; 장애인 택시와 일반 택시를 수평으로 배치 &ndash;&gt;-->
+<!--    <LinearLayout-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:gravity="center"-->
+<!--        android:layout_marginBottom="20dp">-->
+
+<!--        &lt;!&ndash; 장애인 택시 &ndash;&gt;-->
+<!--        <LinearLayout-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical"-->
+<!--            android:gravity="center"-->
+<!--            android:layout_marginEnd="20dp">-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/disabledTaxiImage"-->
+<!--                android:layout_width="100dp"-->
+<!--                android:layout_height="100dp"-->
+<!--                android:src="@drawable/disabled_taxi_icon"-->
+<!--                android:contentDescription="장애인 택시 이미지" />-->
+
+<!--            <Button-->
+<!--                android:id="@+id/disabledTaxiButton"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="장애인 택시"-->
+<!--                android:backgroundTint="#D3D3D3"-->
+<!--                android:textColor="#000"-->
+<!--                android:layout_marginTop="10dp" />-->
+<!--        </LinearLayout>-->
+
+<!--        &lt;!&ndash; 일반 택시 &ndash;&gt;-->
+<!--        <LinearLayout-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical"-->
+<!--            android:gravity="center"-->
+<!--            android:layout_marginStart="20dp">-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/TaxiImage"-->
+<!--                android:layout_width="100dp"-->
+<!--                android:layout_height="100dp"-->
+<!--                android:src="@drawable/disabled_taxi_icon"-->
+<!--                android:contentDescription="일반 택시 이미지" />-->
+
+<!--            <Button-->
+<!--                android:id="@+id/TaxiButton"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="일반 택시"-->
+<!--                android:backgroundTint="#D3D3D3"-->
+<!--                android:textColor="#000"-->
+<!--                android:layout_marginTop="10dp" />-->
+<!--        </LinearLayout>-->
+<!--    </LinearLayout>-->
+
+<!--    &lt;!&ndash; 하단 버튼 (뒤로가기, 홈, 전체 취소) &ndash;&gt;-->
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:gravity="center"-->
+<!--        android:layout_marginTop="20dp">-->
+
+<!--        <Button-->
+<!--            android:id="@+id/backButton"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="뒤로가기"-->
+<!--            android:layout_margin="5dp"-->
+<!--            android:backgroundTint="#674fa7" />-->
+
+<!--        <Button-->
+<!--            android:id="@+id/homeButton"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="홈"-->
+<!--            android:layout_margin="5dp"-->
+<!--            android:backgroundTint="#674fa7" />-->
+
+<!--        <Button-->
+<!--            android:id="@+id/cancelButton"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="전체취소"-->
+<!--            android:layout_margin="5dp"-->
+<!--            android:backgroundTint="#674fa7" />-->
+<!--    </LinearLayout>-->
+
+<!--    &lt;!&ndash; 하단 배너 추가 &ndash;&gt;-->
+<!--    <LinearLayout-->
+<!--        android:id="@+id/bannerLayout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:layout_marginBottom="10dp"-->
+<!--        android:background="#E0E0E0"-->
+<!--        android:gravity="center"-->
+<!--        android:orientation="vertical"-->
+<!--        android:padding="16dp">-->
+
+<!--        &lt;!&ndash; 배너 텍스트 &ndash;&gt;-->
+
+<!--        &lt;!&ndash; QR 코드 이미지 &ndash;&gt;-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/bannerText"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginBottom="10dp"-->
+<!--            android:text="보행자 길찾기"-->
+<!--            android:textColor="#000000"-->
+<!--            android:textSize="20sp" />-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/qrCodeImage"-->
+<!--            android:layout_width="120dp"-->
+<!--            android:layout_height="120dp"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:contentDescription="QR 코드 이미지"-->
+<!--            android:src="@drawable/qr_code_image" />-->
+<!--    </LinearLayout>-->
+<!--</LinearLayout>-->

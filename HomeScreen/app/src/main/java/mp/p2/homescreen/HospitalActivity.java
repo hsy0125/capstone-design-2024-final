@@ -31,6 +31,7 @@ public class HospitalActivity extends AppCompatActivity implements OnMapReadyCal
 
     private static final String TAG = "HospitalActivity";
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
+
     private MapView mapView;
     private RecyclerView hospitalList;
     private List<Hospital> hospitals = new ArrayList<>();
@@ -124,17 +125,22 @@ public class HospitalActivity extends AppCompatActivity implements OnMapReadyCal
                             LatLng currentLocation = new LatLng(location.getLatitude(), location.getLongitude());
                             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 15)); // 줌 레벨 15
                         } else {
-                            // 사용자의 위치를 가져오지 못한 경우 기본 위치 설정 (예: 대전 유성구청)
-                            LatLng defaultLocation = new LatLng(36.3504, 127.3656); // 대전 유성구청
+                            // 사용자의 위치를 가져오지 못한 경우 기본 위치 설정 (예: 대전 충남대학교)
+                            LatLng defaultLocation = new LatLng(36.3673, 127.3445); // 충남대학교
                             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(defaultLocation, 15)); // 줌 레벨 15
                         }
+
+                        // 모든 병원 마커 표시
+                        showAllHospitals();
                     }
                 });
+    }
 
-        // 지도에 병원 위치 마커 추가
+    private void showAllHospitals() {
+        // 모든 병원에 대해 마커 표시
         for (Hospital hospital : hospitals) {
             LatLng hospitalLocation = new LatLng(hospital.getLatitude(), hospital.getLongitude());
-            googleMap.addMarker(new com.google.android.gms.maps.model.MarkerOptions()
+            mMap.addMarker(new com.google.android.gms.maps.model.MarkerOptions()
                     .position(hospitalLocation)
                     .title(hospital.getName())
                     .snippet(hospital.getPhone()));
@@ -147,6 +153,177 @@ public class HospitalActivity extends AppCompatActivity implements OnMapReadyCal
         mapView.onDestroy();
     }
 }
+
+
+
+//package mp.p2.homescreen;
+//
+//import android.Manifest;
+//import android.content.pm.PackageManager;
+//import android.location.Location;
+//import android.os.Bundle;
+//import android.util.Log;
+//import android.widget.Toast;
+//
+//import androidx.annotation.NonNull;
+//import androidx.appcompat.app.AppCompatActivity;
+//import androidx.core.app.ActivityCompat;
+//import androidx.recyclerview.widget.LinearLayoutManager;
+//import androidx.recyclerview.widget.RecyclerView;
+//
+//import com.google.android.gms.maps.CameraUpdateFactory;
+//import com.google.android.gms.maps.GoogleMap;
+//import com.google.android.gms.maps.MapView;
+//import com.google.android.gms.maps.OnMapReadyCallback;
+//import com.google.android.gms.maps.model.LatLng;
+//import com.google.android.gms.tasks.OnSuccessListener;
+//import com.google.android.gms.location.FusedLocationProviderClient;
+//import com.google.android.gms.location.LocationServices;
+//
+//import java.io.BufferedReader;
+//import java.io.InputStreamReader;
+//import java.util.ArrayList;
+//import java.util.List;
+//
+//public class HospitalActivity extends AppCompatActivity implements OnMapReadyCallback {
+//
+//    private static final String TAG = "HospitalActivity";
+//    private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
+//    private static final double MAX_DISTANCE = 500; // 500m
+//    private MapView mapView;
+//    private RecyclerView hospitalList;
+//    private List<Hospital> hospitals = new ArrayList<>();
+//    private GoogleMap mMap;
+//    private FusedLocationProviderClient fusedLocationClient;
+//    private Location currentLocation;
+//
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_hospital);
+//
+//        // FusedLocationProviderClient 초기화
+//        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+//
+//        // MapView 초기화
+//        mapView = findViewById(R.id.mapView);
+//        mapView.onCreate(savedInstanceState);
+//        mapView.getMapAsync(this);
+//
+//        // RecyclerView 초기화
+//        hospitalList = findViewById(R.id.hospitalList);
+//        hospitalList.setLayoutManager(new LinearLayoutManager(this));
+//        HospitalAdapter adapter = new HospitalAdapter(hospitals, new HospitalAdapter.OnHospitalClickListener() {
+//            @Override
+//            public void onHospitalClick(Hospital hospital) {
+//                // 병원 클릭 시 해당 병원 위치로 카메라 이동
+//                LatLng hospitalLocation = new LatLng(hospital.getLatitude(), hospital.getLongitude());
+//                if (mMap != null) {
+//                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(hospitalLocation, 15)); // 줌 레벨 15
+//                }
+//            }
+//        });
+//        hospitalList.setAdapter(adapter);
+//
+//        // 병원 데이터를 로드하여 위경도를 사용
+//        loadHospitalData();
+//    }
+//
+//    private void loadHospitalData() {
+//        try {
+//            BufferedReader reader = new BufferedReader(
+//                    new InputStreamReader(getResources().openRawResource(R.raw.hospitals_data)) // CSV 파일 경로
+//            );
+//
+//            String line;
+//            reader.readLine(); // 헤더 라인 스킵
+//            while ((line = reader.readLine()) != null) {
+//                String[] columns = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)"); // CSV 파싱
+//                String name = columns[0];
+//                String latitudeStr = columns[1]; // 위도
+//                String longitudeStr = columns[2]; // 경도
+//                String postalCode = columns[3]; // 우편번호
+//                String phone = columns[4]; // 전화번호
+//
+//                // 위경도 파싱
+//                double latitude = Double.parseDouble(latitudeStr);
+//                double longitude = Double.parseDouble(longitudeStr);
+//
+//                // 병원 데이터를 리스트에 추가
+//                hospitals.add(new Hospital(name, latitude, longitude, postalCode, phone));
+//            }
+//            reader.close();
+//
+//            // 사용자 위치를 기준으로 병원 데이터를 필터링하여 마커 추가
+//            if (currentLocation != null && mMap != null) {
+//                for (Hospital hospital : hospitals) {
+//                    Location hospitalLocation = new Location("hospital");
+//                    hospitalLocation.setLatitude(hospital.getLatitude());
+//                    hospitalLocation.setLongitude(hospital.getLongitude());
+//
+//                    // 병원과 사용자 간의 거리 계산
+//                    float distance = currentLocation.distanceTo(hospitalLocation);
+//
+//                    // 반경 500m 내에 있는 병원만 지도에 마커 추가
+//                    if (distance <= MAX_DISTANCE) {
+//                        LatLng hospitalLatLng = new LatLng(hospital.getLatitude(), hospital.getLongitude());
+//                        mMap.addMarker(new com.google.android.gms.maps.model.MarkerOptions()
+//                                .position(hospitalLatLng)
+//                                .title(hospital.getName())
+//                                .snippet(hospital.getPhone()));
+//                    }
+//                }
+//            }
+//
+//        } catch (Exception e) {
+//            Log.e(TAG, "병원 데이터를 로드하는 중 오류 발생", e);
+//        }
+//    }
+//
+//    @Override
+//    public void onMapReady(GoogleMap googleMap) {
+//        mMap = googleMap;
+//
+//        // 위치 권한을 요청하고, 현재 위치를 가져옴
+//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+//                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//            ActivityCompat.requestPermissions(this,
+//                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION},
+//                    LOCATION_PERMISSION_REQUEST_CODE);
+//            return;
+//        }
+//
+//        // 위치 서비스 활성화
+//        mMap.setMyLocationEnabled(true);
+//        mMap.getUiSettings().setZoomControlsEnabled(true);
+//
+//        // FusedLocationProviderClient를 사용하여 현재 위치 가져오기
+//        fusedLocationClient.getLastLocation()
+//                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+//                    @Override
+//                    public void onSuccess(Location location) {
+//                        if (location != null) {
+//                            currentLocation = location; // 현재 위치 저장
+//                            LatLng currentLatLng = new LatLng(location.getLatitude(), location.getLongitude());
+//                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 15)); // 줌 레벨 15
+//
+//                            // 병원 데이터를 로드하고 마커를 추가
+//                            loadHospitalData();
+//                        } else {
+//                            // 사용자의 위치를 가져오지 못한 경우 기본 위치 설정 (예: 대전 충남대학교)
+//                            LatLng defaultLocation = new LatLng(36.3673, 127.3445); // 대전 충남대학교
+//                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(defaultLocation, 15)); // 줌 레벨 15
+//                        }
+//                    }
+//                });
+//    }
+//
+//    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//        mapView.onDestroy();
+//    }
+//}
 
 
 

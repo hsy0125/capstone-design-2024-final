@@ -27,7 +27,7 @@ public class HospitalActivity extends AppCompatActivity implements OnMapReadyCal
     private RecyclerView hospitalList;
     private List<Hospital> hospitals = new ArrayList<>();
     private ExecutorService executorService;  // ExecutorService 선언
-    private String apiKey = "YOUR_GEOCODING_API_KEY"; // Google Geocoding API 키
+    private String apiKey = "AIzaSyDoMFHfwO9UW5kP0V1hdRaC8meI2ULj0yc"; // Google Geocoding API 키 (변경됨)
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,13 +55,13 @@ public class HospitalActivity extends AppCompatActivity implements OnMapReadyCal
     private void loadHospitalData() {
         try {
             BufferedReader reader = new BufferedReader(
-                    new InputStreamReader(getResources().openRawResource(R.raw.hospitals_data)) // CSV 파일 경로
+                    new InputStreamReader(getResources().openRawResource(R.raw.hospitals_data)) // CSV 파일 경로 (변경됨)
             );
 
             String line;
             reader.readLine(); // 헤더 라인 스킵
             while ((line = reader.readLine()) != null) {
-                String[] columns = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)"); // CSV 파싱
+                String[] columns = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)"); // CSV 파싱 (변경됨)
                 String name = columns[0];
                 String address = columns[1];
                 String postalCode = columns[2]; // 우편번호
@@ -82,7 +82,7 @@ public class HospitalActivity extends AppCompatActivity implements OnMapReadyCal
                                 public void run() {
                                     hospitals.add(new Hospital(finalName, finalAddress, postalCode, phone, coordinates.latitude, coordinates.longitude));
                                     hospitalList.getAdapter().notifyDataSetChanged();
-                                    mapView.getMapAsync(HospitalActivity.this);  // 지도 업데이트
+                                    mapView.getMapAsync(HospitalActivity.this);  // 지도 업데이트 (변경됨)
                                 }
                             });
                         } else {
@@ -112,6 +112,7 @@ public class HospitalActivity extends AppCompatActivity implements OnMapReadyCal
         executorService.shutdown();
     }
 }
+
 
 
 //package mp.p2.homescreen;

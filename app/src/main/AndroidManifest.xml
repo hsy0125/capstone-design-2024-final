@@ -5,6 +5,7 @@
 
     <!-- 앱에 필요한 권한 추가 -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- 정확한 위치 권한 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- 대략적인 위치 권한 -->
     <uses-permission android:name="android.permission.INTERNET" /> <!-- 인터넷 연결 권한 -->
@@ -22,7 +23,7 @@
         <!-- Google Maps API 키 추가 -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_and_geocoding_key" />
+            android:value="@string/google_maps_api_key" />
 
         <!-- @string/google_maps_key는 res/values/google_maps_api.xml에 저장된 Google Maps API 키를 참조 -->
 

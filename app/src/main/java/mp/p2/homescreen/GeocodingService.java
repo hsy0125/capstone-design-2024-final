@@ -23,6 +23,11 @@ public class GeocodingService {
      * @return 위도와 경도를 포함한 LatLng 객체 또는 null
      */
     public static LatLng getCoordinates(String address, String apiKey) {
+        if (address == null || apiKey == null) {  // null 체크 추가
+            Log.e(TAG, "Address or API key is null");
+            return null;
+        }
+
         HttpURLConnection connection = null;
         BufferedReader reader = null;
 
@@ -38,37 +43,35 @@ public class GeocodingService {
             connection.setReadTimeout(5000);     // 읽기 타임아웃
 
             // 서버로부터 응답을 읽어오기
-            reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            StringBuilder response = new StringBuilder();
-            String line;
+            try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
+                StringBuilder response = new StringBuilder();
+                String line;
+                while ((line = bufferedReader.readLine()) != null) {
+                    response.append(line);
+                }
 
-            while ((line = reader.readLine()) != null) {
-                response.append(line);
+                JSONObject jsonResponse = new JSONObject(response.toString());
+                JSONArray results = jsonResponse.getJSONArray("results");
+
+                if (results.length() > 0) {
+                    // 첫 번째 결과를 가져와서 위치 데이터를 얻음
+                    JSONObject location = results.getJSONObject(0).getJSONObject("geometry").getJSONObject("location");
+
+                    double lat = location.getDouble("lat");
+                    double lng = location.getDouble("lng");
+
+                    return new LatLng(lat, lng);  // LatLng 객체 반환
+                } else {
+                    Log.e(TAG, "No results found for address: " + address);  // 결과가 없는 경우 로그 출력
+                }
             }
 
-            JSONObject jsonResponse = new JSONObject(response.toString());
-            JSONArray results = jsonResponse.getJSONArray("results");
-
-            if (results.length() > 0) {
-                // 첫 번째 결과를 가져와서 위치 데이터를 얻음
-                JSONObject location = results.getJSONObject(0).getJSONObject("geometry").getJSONObject("location");
-
-                double lat = location.getDouble("lat");
-                double lng = location.getDouble("lng");
-
-                return new LatLng(lat, lng);  // LatLng 객체 반환
-            } else {
-                Log.e(TAG, "No results found for address: " + address);  // 결과가 없는 경우 로그 출력
-            }
         } catch (Exception e) {
             Log.e(TAG, "Error fetching coordinates", e);  // 에러 발생 시 로그 출력
         } finally {
-            // 자원 해제
-            try {
-                if (reader != null) reader.close();
-                if (connection != null) connection.disconnect();
-            } catch (Exception e) {
-                Log.e(TAG, "Error closing resources", e);  // 자원 해제 중 발생한 예외 처리
+            // 자원 해제는 try-with-resources 구문으로 자동 처리
+            if (connection != null) {
+                connection.disconnect();
             }
         }
         return null;  // 예외 발생 시 null 반환

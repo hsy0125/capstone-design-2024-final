@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">HomeScreen</string>
-    <string name="google_maps_and_geocoding_key">AIzaSyDoMFHfwO9UW5kP0V1hdRaC8meI2ULj0yc</string>
+    <string name="google_maps_api_key">AIzaSyDoMFHfwO9UW5kP0V1hdRaC8meI2ULj0yc</string>
 
 </resources>
